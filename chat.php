@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -7,6 +15,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="logout">
+        <form action="logout.php" method="POST">
+            <button type="submit">ログアウト</button>
+        </form>
+    </div>
+    
     <div id="chat-container">
         <div id="chat-box"></div>
         <div id="options">
@@ -15,6 +29,7 @@
             <button class="option blue" data-value="軽め">軽め</button>
         </div>
     </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
