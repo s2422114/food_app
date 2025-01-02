@@ -1,71 +1,107 @@
+/* 全体のボディスタイル */
 body {
     font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
-    margin: 0;
 }
 
-#chat-container {
-    width: 400px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+/* コンテナスタイル */
+.container {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     flex-direction: column;
-}
-
-#chat-box {
-    height: 300px;
-    padding: 10px;
-    overflow-y: scroll;
-    border-bottom: 1px solid #ccc;
-    display: flex;
-    flex-direction: column;
-}
-
-#options {
-    display: flex;
-    justify-content: flex-end; /* ボタンを右揃え */
     padding: 10px;
 }
 
-.option {
-    padding: 10px;
-    margin: 5px;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-.option:hover {
-    opacity: 0.8;
-}
-
-.red {
-    background-color: #ff6347; /* トマト色 */
-}
-
-.green {
-    background-color: #32cd32; /* ライムグリーン */
-}
-
-.blue {
-    background-color: #1e90ff; /* ドジャーブルー */
-}
-
-.message {
-    margin-bottom: 10px;
-}
-
-button[type="submit"] {
-    top:0;
-    left:0;
+/* ログアウトボタンのスタイル */
+.logout {
     position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
     cursor: pointer;
+}
+
+/* チャットボックスのスタイル */
+.chat-box {
+    width: 100%;
+    max-width: 600px;
+    height: 70%;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+/* チャット出力のスタイル */
+.chat-output {
+    height: 80%;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+/* ボタンのグループのスタイル */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ボタンのスタイル */
+.buttons button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    font-size: 1.2em;
+}
+
+/* ボタンのカラー */
+.btn-gutsuri {
+    background-color: #FF6347; /* Tomato */
+    color: white;
+}
+.btn-sokosoko {
+    background-color: #4682B4; /* SteelBlue */
+    color: white;
+}
+.btn-karume {
+    background-color: #32CD32; /* LimeGreen */
+    color: white;
+}
+
+/* メディアクエリ：最大幅600px */
+@media (max-width: 600px) {
+    .chat-box {
+        height: 60%;
+    }
+
+    .buttons button {
+        font-size: 1em;
+        padding: 8px;
+    }
+}
+
+/* メディアクエリ：最大幅400px */
+@media (max-width: 400px) {
+    .chat-box {
+        height: 50%;
+    }
+
+    .buttons button {
+        font-size: 0.8em;
+        padding: 6px;
+    }
 }
