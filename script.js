@@ -1,35 +1,17 @@
-document.querySelectorAll('.option').forEach(button => {
-    button.addEventListener('click', () => {
-        sendMessage(button.dataset.value);
-    });
-});
-
-function sendMessage(userInput) {
-    if (userInput.trim() === '') return;
-
-    appendMessage('ユーザー', userInput);
-
-    fetch('index.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `input=${encodeURIComponent(userInput)}`
-    })
-    .then(response => response.json())
-    .then(data => {
-        appendMessage('チャットボット', data.message);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
-
-function appendMessage(sender, message) {
-    const chatBox = document.getElementById('chat-box');
-    const messageElement = document.createElement('div');
-    messageElement.className = 'message';
-    messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
-    chatBox.appendChild(messageElement);
-    chatBox.scrollTop = chatBox.scrollHeight;
+function sendType(type) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'chat.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            const chatOutput = document.getElementById('chat-output');
+            chatOutput.innerHTML += `<p>ユーザ：${type}</p>`;
+            setTimeout(() => {
+                chatOutput.innerHTML += `<p>チャットボット：${response.response}</p>`;
+                chatOutput.scrollTop = chatOutput.scrollHeight;
+            }, 1000); // 1 second delay
+        }
+    };
+    xhr.send(`type=${type}`);
 }
